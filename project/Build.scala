@@ -16,6 +16,11 @@ object ApplicationBuild extends Build {
     val main = PlayProject(appName, appVersion, appDependencies).settings(
       organization := moduleOrganization,
       publishTo := Some(Resolver.file("file",  new File(publishingFolder))(Resolver.mavenStylePatterns)),
-      publishMavenStyle := true
+      publishMavenStyle := true,
+
+      lessEntryPoints <<= (sourceDirectory in Compile)(base => {
+        val pathToBootstrapLess = base / "assets" / "stylesheets" / "twitter-bootstrap"
+        (pathToBootstrapLess / "bootstrap.less") +++ (pathToBootstrapLess / "responsive.less")
+      })
     )
 }
