@@ -19,7 +19,7 @@ object ApplicationBuild extends Build {
       publishMavenStyle := true,
 
       lessEntryPoints <<= (sourceDirectory in Compile)(base => {
-        val pathToBootstrapLess = base / "assets" / "stylesheets" / "twitter-bootstrap"
+        val pathToBootstrapLess = base / "assets" / "stylesheets"
         (pathToBootstrapLess / "bootstrap.less") +++ (pathToBootstrapLess / "responsive.less")
       })
     )
